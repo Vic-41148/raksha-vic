@@ -52,7 +52,7 @@ function getWeatherState(condition: string, tempC: number): WeatherState {
 }
 
 // ── Weather emoji for badge ────────────────────────────────────────
-export function getWeatherEmoji(state: WeatherState, condition: string): string {
+export function getWeatherEmoji(state: WeatherState): string {
   const emojiMap: Record<WeatherState, string> = {
     rain:    '🌧️',
     storm:   '⛈️',
@@ -151,7 +151,7 @@ function AppInner() {
 
   const getRiskData = async (lat: number, lon: number, cfg: UserConfig) => {
     try {
-      const res = await fetch('/api/risk', {
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/risk', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ lat, lon, ...cfg })
@@ -213,7 +213,7 @@ function AppInner() {
     { id: 'credits',  icon: Star,            label: 'Credits'  },
   ]
 
-  const weatherEmoji  = getWeatherEmoji(weatherState, riskData?.weather?.condition ?? '')
+  const weatherEmoji  = getWeatherEmoji(weatherState)
   const weatherLabel  = riskData?.weather?.condition
     ? `${weatherEmoji} ${riskData.weather.condition}`
     : null

@@ -77,15 +77,15 @@ export function SafetyTab({ config, riskData, loading, error, lastUpdated, onRef
     if (confirmed) return
     setConfirmed(true)
     navigator.geolocation.getCurrentPosition(
-      pos => axios.post('/api/safe-confirm', { lat: pos.coords.latitude, lon: pos.coords.longitude, city: config.city }),
-      ()  => axios.post('/api/safe-confirm', { lat: 0, lon: 0, city: config.city })
+      pos => axios.post((import.meta.env.VITE_API_URL || '') + '/api/safe-confirm', { lat: pos.coords.latitude, lon: pos.coords.longitude, city: config.city }),
+      ()  => axios.post((import.meta.env.VITE_API_URL || '') + '/api/safe-confirm', { lat: 0, lon: 0, city: config.city })
     )
   }, [confirmed, config.city])
 
   const handleHelpline = async () => {
     if (!helplineData) {
       try {
-        const r = await fetch(`/api/helplines?country=${encodeURIComponent(config.country)}`)
+        const r = await fetch((import.meta.env.VITE_API_URL || '') + `/api/helplines?country=${encodeURIComponent(config.country)}`)
         setHelplineData(await r.json())
       } catch { /* show default */ }
     }
