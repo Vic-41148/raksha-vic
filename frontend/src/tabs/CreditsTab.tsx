@@ -21,7 +21,7 @@ export function CreditsTab() {
         </div>
         <h2 className="md-headline-small" style={{ margin: '0 0 4px', fontWeight: 500 }}>WeatherWise Hack 2026</h2>
         <p className="md-body-medium" style={{ margin: '0 0 16px', opacity: 0.75 }}>
-          Team Code: <strong>WWH-RHVXXX</strong>
+          Team Code: <strong>XXX-XXX8D6</strong>
         </p>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <span className="md-chip md-label-medium" style={{
@@ -122,7 +122,7 @@ export function CreditsTab() {
           Made with <Heart size={12} color="var(--md-error)" /> for WeatherWise Hack
         </p>
         <p className="md-label-small" style={{ color: 'var(--md-outline-variant)', marginTop: 4, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-          Raksha v1.0 · Team WWH-RHVXXX
+          Raksha v1.0 · Team XXX-XXX8D6
         </p>
       </div>
     </div>
