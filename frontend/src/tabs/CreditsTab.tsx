@@ -16,18 +16,41 @@ export function CreditsTab() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
           <Award size={18} />
           <span className="md-label-medium" style={{ textTransform: 'uppercase', letterSpacing: '0.08em', opacity: 0.8 }}>
-            Official Entry
+            Official Devpost Entry
           </span>
         </div>
-        <h2 className="md-headline-small" style={{ margin: '0 0 4px', fontWeight: 500 }}>WeatherWise Hack</h2>
+        <h2 className="md-headline-small" style={{ margin: '0 0 4px', fontWeight: 500 }}>WeatherWise Hack 2026</h2>
         <p className="md-body-medium" style={{ margin: '0 0 16px', opacity: 0.75 }}>
-          Team Code: <strong>XXX-523</strong>
+          Team Code: <strong>XXX-XXX8D6</strong>
         </p>
-        <span className="md-chip md-label-medium" style={{
-          background: 'rgba(0,0,0,0.12)', border: 'none', color: 'currentColor'
-        }}>
-          <Shield size={14} /> Made for WeatherWise Hack
-        </span>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <span className="md-chip md-label-medium" style={{
+            background: 'rgba(0,0,0,0.12)', border: 'none', color: 'currentColor'
+          }}>
+            <Shield size={14} /> Disaster Response & Preparedness
+          </span>
+          <span className="md-chip md-label-medium" style={{
+            background: 'rgba(0,0,0,0.12)', border: 'none', color: 'currentColor'
+          }}>
+            <Brain size={14} /> AI & Data Innovation
+          </span>
+        </div>
+      </div>
+
+      {/* Team */}
+      <div>
+        <p className="md-label-large" style={{ color: 'var(--md-on-surface-variant)', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Team Members</p>
+        <div className="md-card-outlined" style={{ padding: 20 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+            {['Aditya Shibu', 'Akash Sharma', 'Ujjwal Chauhan', 'Rakesh G.'].map(name => (
+              <span key={name} className="md-chip md-label-medium" style={{
+                background: 'var(--md-surface-container)', border: '1px solid var(--md-outline-variant)', color: 'var(--md-on-surface)'
+              }}>
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* About */}
@@ -77,7 +100,7 @@ export function CreditsTab() {
       <div>
         <p className="md-label-large" style={{ color: 'var(--md-on-surface-variant)', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Source</p>
         <div className="md-card-outlined" style={{ overflow: 'hidden' }}>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+          <a href="https://github.com/Vic-41148/raksha-vic" target="_blank" rel="noopener noreferrer"
             style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
           >
             <div className="md-list-item">
@@ -99,7 +122,7 @@ export function CreditsTab() {
           Made with <Heart size={12} color="var(--md-error)" /> for WeatherWise Hack
         </p>
         <p className="md-label-small" style={{ color: 'var(--md-outline-variant)', marginTop: 4, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-          Raksha v1.0 · Team XXX-523
+          Raksha v1.0 · Team XXX-XXX8D6
         </p>
       </div>
     </div>

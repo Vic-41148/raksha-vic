@@ -52,7 +52,7 @@ function getWeatherState(condition: string, tempC: number): WeatherState {
 }
 
 // ── Weather emoji for badge ────────────────────────────────────────
-export function getWeatherEmoji(state: WeatherState, condition: string): string {
+export function getWeatherEmoji(state: WeatherState): string {
   const emojiMap: Record<WeatherState, string> = {
     rain:    '🌧️',
     storm:   '⛈️',
@@ -151,7 +151,7 @@ function AppInner() {
 
   const getRiskData = async (lat: number, lon: number, cfg: UserConfig) => {
     try {
-      const res = await fetch('/api/risk', {
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/risk', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ lat, lon, ...cfg })
@@ -213,7 +213,7 @@ function AppInner() {
     { id: 'credits',  icon: Star,            label: 'Credits'  },
   ]
 
-  const weatherEmoji  = getWeatherEmoji(weatherState, riskData?.weather?.condition ?? '')
+  const weatherEmoji  = getWeatherEmoji(weatherState)
   const weatherLabel  = riskData?.weather?.condition
     ? `${weatherEmoji} ${riskData.weather.condition}`
     : null
@@ -231,10 +231,16 @@ function AppInner() {
         {error === 'offline' && (
           <span className="md-chip md-chip-assist md-label-small" style={{ marginRight: 8 }}>Offline</span>
         )}
-        {user.picture
-          ? <img src={user.picture} alt={user.name} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} />
-          : <div className="md-avatar" style={{ width: 36, height: 36, fontSize: 14 }}>{user.name?.[0]}</div>
-        }
+        <button 
+          onClick={() => setTab('settings')}
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', outline: 'none', display: 'flex' }}
+          aria-label="Account Settings"
+        >
+          {user.picture
+            ? <img src={user.picture} alt={user.name} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} />
+            : <div className="md-avatar" style={{ width: 36, height: 36, fontSize: 14 }}>{user.name?.[0]}</div>
+          }
+        </button>
       </header>
 
       {/* Tab content */}

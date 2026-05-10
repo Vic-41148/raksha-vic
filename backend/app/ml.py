@@ -1,6 +1,7 @@
 import joblib
 import os
 import numpy as np
+import pandas as pd
 from .config import MODEL_PATH
 
 # Load model once at startup
@@ -21,8 +22,10 @@ def calculate_risk_score(features):
     """
     if _model:
         try:
-            # features is a list, model expects 2D array
-            score = _model.predict([features])[0]
+            # features is a list, wrap in DataFrame with feature names to suppress sklearn warning
+            feature_names = ['rainfall_mm', 'elevation_m', 'humidity_pct', 'wind_speed_kmh', 'historical_risk_bool']
+            df_features = pd.DataFrame([features], columns=feature_names)
+            score = _model.predict(df_features)[0]
             return float(np.clip(score, 0.0, 10.0))
         except Exception as e:
             print(f"[Raksha ML] Prediction error: {e}, falling back to heuristic")
