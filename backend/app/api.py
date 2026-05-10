@@ -389,8 +389,8 @@ Rules:
 
 @router.post("/chat")
 async def chat_endpoint(request: ChatRequest):
-    if not GROQ_API_KEY:
-        raise HTTPException(status_code=500, detail="GROQ_API_KEY not configured. Chat is unavailable.")
+    if not GROQ_API_KEY or GROQ_API_KEY == "your_key_here":
+        return {"response": "I am Raksha (Offline Mode). I cannot provide live AI responses without an API key, but please remember to stay safe and call emergency services if you are in immediate danger."}
 
     client = Groq(api_key=GROQ_API_KEY)
     
@@ -410,4 +410,4 @@ async def chat_endpoint(request: ChatRequest):
         )
         return {"response": completion.choices[0].message.content.strip()}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to connect to Groq: {str(e)}")
+        return {"response": "I am currently experiencing connection issues. Please rely on official emergency services if you are in danger."}
